@@ -40,7 +40,7 @@ jobs:
 
       # SchemaSpyを実行
       - name: SchemaSpy
-        run: docker compose -f compose.schemaspy.yml up
+        run: docker-compose up -d mysql schemaspy
 
       # AWSに接続するための設定
       - name: Set up AWS Credentials
