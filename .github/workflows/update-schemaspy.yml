@@ -16,21 +16,21 @@ jobs:
   schemaspy:
     runs-on: ubuntu-latest
     # MySQLのコンテナを立ち上げる
-    services:
-      mysql:
-        image: mysql:8
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: my_database
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping -h localhost -uuser -ppassword" 
-          --health-interval=10s 
-          --health-timeout=5s 
-          --health-retries=3
+    # services:
+    #   mysql:
+    #     image: mysql:8
+    #     env:
+    #       MYSQL_ROOT_PASSWORD: password
+    #       MYSQL_DATABASE: my_database
+    #       MYSQL_USER: user
+    #       MYSQL_PASSWORD: password
+    #     ports:
+    #       - 3306:3306
+    #     options: >-
+    #       --health-cmd="mysqladmin ping -h localhost -uuser -ppassword" 
+    #       --health-interval=10s 
+    #       --health-timeout=5s 
+    #       --health-retries=3
     steps:
       - uses: actions/checkout@v4
 
@@ -40,7 +40,7 @@ jobs:
 
       # SchemaSpyを実行
       - name: SchemaSpy
-        run: docker-compose up -d mysql schemaspy
+        run: docker compose up -d mysql schemaspy
 
       # AWSに接続するための設定
       - name: Set up AWS Credentials
