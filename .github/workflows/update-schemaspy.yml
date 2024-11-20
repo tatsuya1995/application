@@ -35,7 +35,7 @@ jobs:
 
       # マイグレーションを実行
       - name: Migration
-        run: # ここにマイグレーションの処理を書く
+        run: echo "Migration step is skipped."
 
       # SchemaSpyを実行
       - name: SchemaSpy
