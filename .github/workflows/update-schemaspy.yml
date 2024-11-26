@@ -37,4 +37,4 @@ jobs:
       # S3にアップロード
       - name: Upload to S3
         run: |
-          aws s3 sync ./output s3://my-schemaspy --delete
+          aws s3 sync ./output s3//wada-db-diagram --delete
