@@ -24,11 +24,11 @@ jobs:
       - name: Debug Docker containers
         run: docker ps
 
-      - name: Adjust ownership
-        run: docker exec application-app-1 chown -R www-data:www-data /src
+      - name: Clear Composer Cache
+        run: docker exec application-app-1 composer clear-cache
 
       - name: Fix Permissions
-        run: docker exec application-app-1 chown -R www-data:www-data /src/vendor
+        run: docker exec application-app-1 chown -R www-data:www-data /src /src/vendor
       
       - name: Install Composer Dependencies
         run: docker exec application-app-1 composer install
