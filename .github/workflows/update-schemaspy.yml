@@ -24,6 +24,9 @@ jobs:
       - name: Debug Docker containers
         run: docker ps
 
+      - name: Install Composer Dependencies
+        run: docker exec application-app-1 composer install
+
       # マイグレーションを実行
       - name: Run Migration
         run: docker exec application-app-1 php artisan migrate
