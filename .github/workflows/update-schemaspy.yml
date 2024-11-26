@@ -21,6 +21,9 @@ jobs:
       - name: app & mysql
         run: docker compose up -d app mysql
 
+      - name: Debug Docker containers
+        run: docker ps
+
       # マイグレーションを実行
       - name: Run Migration
         run: docker exec application_app_1 php artisan migrate
