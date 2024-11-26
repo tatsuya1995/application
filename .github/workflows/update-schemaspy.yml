@@ -22,8 +22,8 @@ jobs:
         run: docker compose up -d app mysql
 
       # マイグレーションを実行
-      - name: Migration
-        run: echo "Migration step is skipped."
+      - name: Run Migration
+        run: docker exec app php artisan migrate
 
       # mysqlを作成した後に、マイグレーション実行して、その後にschemaspyかな
       # SchemaSpyを実行
