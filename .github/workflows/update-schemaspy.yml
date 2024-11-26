@@ -23,7 +23,7 @@ jobs:
 
       # マイグレーションを実行
       - name: Run Migration
-        run: docker exec app php artisan migrate
+      run: docker exec application_app_1 php artisan migrate
 
       # mysqlを作成した後に、マイグレーション実行して、その後にschemaspyかな
       # SchemaSpyを実行
