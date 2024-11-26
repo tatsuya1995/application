@@ -27,6 +27,9 @@ jobs:
       - name: Adjust ownership
         run: docker exec application-app-1 chown -R www-data:www-data /src
 
+      - name: Fix Permissions
+        run: docker exec application-app-1 chown -R www-data:www-data /src/vendor
+      
       - name: Install Composer Dependencies
         run: docker exec application-app-1 composer install
 
