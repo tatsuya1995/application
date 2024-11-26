@@ -18,6 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: app & mysql
+      run: docker compose up -d app mysql
+
       # マイグレーションを実行
       - name: Migration
         run: echo "Migration step is skipped."
@@ -25,7 +28,7 @@ jobs:
       # mysqlを作成した後に、マイグレーション実行して、その後にschemaspyかな
       # SchemaSpyを実行
       - name: SchemaSpy
-        run: docker compose up -d mysql schemaspy
+        run: docker compose up -d schemaspy
 
       # AWSに接続するための設定
       - name: Set up AWS Credentials
