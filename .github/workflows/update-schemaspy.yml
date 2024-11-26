@@ -42,5 +42,9 @@ jobs:
         run: |
           ls -la
           pwd
-          ls -la ./documents/schemaspy
-          aws s3 sync ./documents/schemaspy s3://wada-db-diagram --delete
+          ls -la ./documents/
+          pwd
+          ls -la documents/
+          pwd
+          ls -la documents/schemaspy
+          aws s3 sync documents/schemaspy s3://wada-db-diagram --delete
