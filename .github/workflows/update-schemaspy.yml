@@ -24,6 +24,9 @@ jobs:
       - name: Debug Docker containers
         run: docker ps
 
+      - name: Mark /src as a safe Git directory
+        run: docker exec application-app-1 git config --global --add safe.directory /src
+
       - name: Install Composer Dependencies
         run: docker exec application-app-1 composer install
 
