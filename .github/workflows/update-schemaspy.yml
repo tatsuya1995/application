@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: app & mysql
-      run: docker compose up -d app mysql
+        run: docker compose up -d app mysql
 
       # マイグレーションを実行
       - name: Migration
