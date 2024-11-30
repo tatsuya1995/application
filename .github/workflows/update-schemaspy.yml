@@ -42,9 +42,16 @@ jobs:
       - name: Fix Permissions
         run: docker exec application-app-1 chown -R www-data:www-data /src /src/vendor
 
+      - name: Setup env
+        run: |
+          cp .env.example .env
       # マイグレーションを実行
       - name: Run Migration
-        run: docker exec application-app-1 php artisan migrate
+        run: |
+        docker exec application-app-1
+        cp .env.example .env
+        php artisan key:generate
+        php artisan migrate
 
       # SchemaSpyを実行
       - name: SchemaSpy
