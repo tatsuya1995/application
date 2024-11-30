@@ -31,10 +31,14 @@ jobs:
       #   run: docker exec application-app-1 composer clear-cache
 
       - name: Fix Permissions
-        run: docker exec application-app-1 chown -R www-data:www-data /src /src/vendor
-      
-      - name: Install Composer Dependencies
-        run: docker exec application-app-1 composer install --verbose
+      run: |
+        docker exec application-app-1 chown -R www-data:www-data /src /src/vendor
+        docker exec application-app-1 chmod -R 775 /src /src/vendor
+
+    - name: Install Composer Dependencies
+      run: |
+        docker exec application-app-1 mkdir -p /tmp/composer
+        docker exec application-app-1 COMPOSER_TMP_DIR=/tmp/composer composer install --prefer-dist --no-interaction --verbose
 
       # マイグレーションを実行
       - name: Run Migration
