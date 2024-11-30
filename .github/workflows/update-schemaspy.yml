@@ -34,7 +34,7 @@ jobs:
         run: docker exec application-app-1 chown -R www-data:www-data /src /src/vendor
       
       - name: Install Composer Dependencies
-        run: docker exec application-app-1 composer install
+        run: docker exec application-app-1 composer install --verbose
 
       # マイグレーションを実行
       - name: Run Migration
