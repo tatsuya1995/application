@@ -33,9 +33,12 @@ jobs:
       - name: Clear Composer Cache
         run: docker exec application-app-1 composer clear-cache
     
+      - name: Configure Git Safe Directory
+        run: docker exec application-app-1 git config --global --add safe.directory /src
+      
       - name: Install Composer Dependencies
-        run: docker exec application-app-1 composer install --prefer-dist --no-interaction --verbose --retry=3
-    
+        run: docker exec application-app-1 composer install --prefer-dist --no-interaction --verbose
+      
       - name: Fix Permissions
         run: docker exec application-app-1 chown -R www-data:www-data /src /src/vendor
 
