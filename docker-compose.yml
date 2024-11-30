@@ -19,6 +19,8 @@ services:
         - /src/node_modules
         - /src/vendor
         - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+      networks:
+        - app-network
 
     mysql:
       image: mysql:8.0.33
@@ -30,6 +32,8 @@ services:
         - MYSQL_DATABASE=local
       ports:
         - 3306:3306
+      networks:
+        - app-network
 
     schemaspy:
       build: ./docker/schemaspy
@@ -37,3 +41,7 @@ services:
           - mysql
       volumes:
       - ./documents/schemaspy:/documents/schemaspy
+
+networks:
+  app-network:
+    driver: bridge
