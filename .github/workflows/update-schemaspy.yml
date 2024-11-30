@@ -34,15 +34,17 @@ jobs:
         run: docker exec application-app-1 composer install --prefer-dist --no-interaction --verbose
       
       - name: Fix Permissions
-        run: docker exec application-app-1 chown -R www-data:www-data /src /src/vendor
+        run: |
+          docker exec application-app-1 chown -R www-data:www-data /src /src/vendor
+          docker exec application-app-1 chmod -R 775 /src
 
       - name: Setup env
         run: |
-          cp .env.example .env
+          docker exec application-app-1 cp .env.example .env
       # マイグレーションを実行
       - name: Run Migration
         run: |
-          docker exec application-app-1
+          docker exec -it application-app-1 bash
           cp .env.example .env
           php artisan key:generate
           php artisan migrate
