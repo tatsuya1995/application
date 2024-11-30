@@ -35,10 +35,13 @@ jobs:
           docker exec application-app-1 chown -R www-data:www-data /src /src/vendor
           docker exec application-app-1 chmod -R 775 /src /src/vendor
 
+      - name: Prepare Temporary Directory for Composer
+        run: docker exec application-app-1 mkdir -p /tmp/composer
+        
       - name: Install Composer Dependencies
         run: |
-          docker exec application-app-1 mkdir -p /tmp/composer
-          docker exec application-app-1 COMPOSER_TMP_DIR=/tmp/composer composer install --prefer-dist --no-interaction --verbose
+          docker exec application-app-1 sh -c "COMPOSER_TMP_DIR=/tmp/composer composer install --prefer-dist --no-interaction --verbose"
+        
 
       # マイグレーションを実行
       - name: Run Migration
