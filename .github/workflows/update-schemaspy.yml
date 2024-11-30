@@ -40,10 +40,11 @@ jobs:
 
       - name: Setup env
         run: |
-          docker exec application-app-1 cp .env.example .env
+          docker exec application-app-1 cp -p .env.example .env
       # マイグレーションを実行
       - name: Run Migration
         run: |
+          docker ps
           docker exec application-app-1 ls -la
           docker exec application-app-1 php artisan key:generate
           docker exec application-app-1 php artisan migrate
