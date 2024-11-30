@@ -24,11 +24,8 @@ jobs:
       - name: Debug Docker containers
         run: docker ps
 
-      # - name: Remove Vendor Directory
-      #   run: docker exec application-app-1 rm -rf /src/vendor
-
-      # - name: Clear Composer Cache
-      #   run: docker exec application-app-1 composer clear-cache
+      - name: Remove Vendor Directory
+        run: docker exec application-app-1 rm -rf /src/vendor
 
       - name: Clear Composer Cache
         run: docker exec application-app-1 composer clear-cache
