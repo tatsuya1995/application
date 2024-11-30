@@ -48,10 +48,10 @@ jobs:
       # マイグレーションを実行
       - name: Run Migration
         run: |
-        docker exec application-app-1
-        cp .env.example .env
-        php artisan key:generate
-        php artisan migrate
+          docker exec application-app-1
+          cp .env.example .env
+          php artisan key:generate
+          php artisan migrate
 
       # SchemaSpyを実行
       - name: SchemaSpy
