@@ -24,6 +24,17 @@ jobs:
       - name: Debug Docker containers
         run: docker ps
 
+      - name: Wait for MySQL
+        run: |
+          for i in {1..10}; do
+            if docker exec application-mysql-1 mysqladmin ping -uroot --silent; then
+              echo "MySQL is ready!"
+              break
+            fi
+            echo "Waiting for MySQL to be ready..."
+            sleep 5
+          done
+
       - name: Clear Composer Cache
         run: docker exec application-app-1 composer clear-cache
     
@@ -42,6 +53,7 @@ jobs:
         run: |
           docker exec application-app-1 cp -p .env.example .env
       # マイグレーションを実行
+      # docker の mysqlが立ち上がっていない。立ち上がるまで待つ必要がある。
       - name: Run Migration
         run: |
           docker ps
